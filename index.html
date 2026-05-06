@@ -607,9 +607,16 @@ function parseCSVLine(line) {
   return result;
 }
 
+// Normalizar número vindo do CSV (vírgula decimal, sinal %, notação científica)
+function parseNum(s) {
+  if (!s) return 0;
+  s = String(s).replace('%','').replace(',','.').trim();
+  return parseFloat(s) || 0;
+}
+
 function parsearCSV(csv) {
   const linhas = csv.trim().split('\n');
-  // Colunas BD_AVANÇO:
+  // Colunas BD_AVANÇO (índices 0-based):
   // 0=PROJETO, 1=ESTRUTURA, 2=ELEMENTO, 3=TIPO_ELEMENTO, 4=FASE, 5=SEQ_FASE,
   // 6=UNIDADE, 7=PREVISTO, 8=REALIZADO, 9=PCT_FASE, 10=PESO_FASE,
   // 11=CONTRIB_GLOBAL, 12=DATA_INICIO, 13=DATA_CONCLUSAO
@@ -619,24 +626,29 @@ function parsearCSV(csv) {
 
   for (let i = 1; i < linhas.length; i++) {
     const r = parseCSVLine(linhas[i]);
-    if (r.length < 11) continue;
+    if (r.length < 12) continue;
 
     const elemento  = r[2].trim();
     const tipo      = r[3].trim();
     const fase      = r[4].trim();
-    const previsto  = parseFloat(r[7].replace(',','.')) || 0;
-    const realizado = parseFloat(r[8].replace(',','.')) || 0;
-    // Peso vem como decimal puro do Excel (ex: 0.01243 = 1.243%)
-    // Se vier em % (ex: 1.243), dividir por 100; se vier como 0.01243, usar direto
-    let peso = parseFloat(r[10].replace(',','.')) || 0;
-    // Normalizar: se peso > 1, o Excel exportou como percentual × 100
-    if (peso > 1) peso = peso / 100;
+    const previsto  = parseNum(r[7]);
+    const realizado = parseNum(r[8]);
+
+    // Peso: col 10. Pode vir como 0.739% (= 0.00739) ou 0.00739
+    // Normalização segura: se > 0.1, dividir por 100 (pesos nunca ultrapassam 5% por fase)
+    let peso = parseNum(r[10]);
+    if (peso > 0.1) peso = peso / 100;
+
+    // CONTRIB_GLOBAL: col 11. É a contribuição real desta fase no avanço global.
+    // Mesma normalização — se > 0.1, dividir por 100
+    let contrib = parseNum(r[11]);
+    if (contrib > 0.1) contrib = contrib / 100;
 
     if (!elemento || !fase) continue;
 
     if (tipo === 'Vão') {
       if (!vaosMap[elemento]) vaosMap[elemento] = { id: elemento, fases: [], pesoTotal: 0 };
-      vaosMap[elemento].fases.push({ n: fase, p: previsto, r: realizado, w: peso });
+      vaosMap[elemento].fases.push({ n: fase, p: previsto, r: realizado, w: peso, contrib: contrib });
       vaosMap[elemento].pesoTotal += peso;
     } else {
       if (!apoiosMap[elemento]) {
@@ -644,11 +656,11 @@ function parsearCSV(csv) {
           id: elemento, tipo: tipo,
           fases: [], pesoTotal: 0,
           info: tipo === 'Encontro'
-            ? `${elemento==='E1'?5:5} estacas D=1,20m`
+            ? `${elemento === 'E1' ? 5 : 5} estacas D=1,20m`
             : '6 estacas D=1,50m | 3 pilares'
         };
       }
-      apoiosMap[elemento].fases.push({ n: fase, p: previsto, r: realizado, w: peso });
+      apoiosMap[elemento].fases.push({ n: fase, p: previsto, r: realizado, w: peso, contrib: contrib });
       apoiosMap[elemento].pesoTotal += peso;
     }
   }
@@ -663,11 +675,14 @@ function parsearCSV(csv) {
   DADOS_APOIOS = ordemApoios.map(id => apoiosMap[id]).filter(Boolean);
   DADOS_VAOS   = ordemVaos.map(id => vaosMap[id]).filter(Boolean);
 
-  // Log de diagnóstico no console (visível via F12)
-  console.log(`[BD] Apoios carregados: ${DADOS_APOIOS.length} | Vãos: ${DADOS_VAOS.length}`);
+  // Diagnóstico no console (F12)
+  console.log(`[BD] Carregado: ${DADOS_APOIOS.length} apoios | ${DADOS_VAOS.length} vãos`);
   if (DADOS_APOIOS.length > 0) {
-    const ap0 = DADOS_APOIOS[0];
-    console.log(`[BD] Exemplo ${ap0.id}:`, ap0.fases);
+    const ap = DADOS_APOIOS[0];
+    console.log(`[BD] ${ap.id} pesoTotal=${ap.pesoTotal.toFixed(6)} | fases:`, ap.fases);
+    const somaGlobal = [...DADOS_APOIOS, ...DADOS_VAOS]
+      .reduce((acc, el) => acc + el.pesoTotal, 0);
+    console.log(`[BD] Soma de todos os pesoTotal = ${somaGlobal.toFixed(4)} (esperado ≈ 1.0)`);
   }
 
   renderizarTudo();
@@ -683,9 +698,16 @@ function setStatus(tipo, msg) {
 // HELPERS DE CÁLCULO
 // ══════════════════════════════════════════════════════
 function avApoio(ap) {
-  let n = 0, d = 0;
-  ap.fases.forEach(f => { n += (f.p > 0 ? f.r / f.p : 0) * f.w; d += f.w; });
-  return d > 0 ? n / d : 0;
+  // Contribuição realizada / contribuição máxima possível do apoio
+  // contrib de cada fase = pct_fase × peso_fase (vem do Excel)
+  // peso_fase = contribuição máxima da fase (quando 100% concluída)
+  // Portanto: av = soma(contrib) / soma(peso) para o apoio
+  let realContrib = 0, maxContrib = 0;
+  ap.fases.forEach(f => {
+    realContrib += f.contrib;   // o que já foi realizado
+    maxContrib  += f.w;         // o máximo possível (peso da fase)
+  });
+  return maxContrib > 0 ? realContrib / maxContrib : 0;
 }
 
 function stApoio(ap) {
@@ -743,17 +765,15 @@ function atualizarKPIs() {
   const av_meso  = meso_den  > 0 ? meso_num  / meso_den  : 0;
   const av_super = super_den > 0 ? super_num / super_den : 0;
 
-  // Avanço global = SOMAPRODUTO(avanço_do_elemento × peso_do_elemento)
-  // pesoTotal já está em decimal (ex: 0.01743 = 1.743%)
-  // a soma de todos os pesoTotal deve ser ≈ 1.0 (100%)
+  // AVANÇO GLOBAL: soma direta das contribuições de cada fase
+  // f.contrib = CONTRIB_GLOBAL do Excel = pct_fase × peso_fase (já calculado na planilha)
+  // Isso é o método mais robusto — não depende da escala dos pesos
   let global = 0;
   DADOS_APOIOS.forEach(ap => {
-    global += avApoio(ap) * ap.pesoTotal;
+    ap.fases.forEach(f => { global += f.contrib; });
   });
   DADOS_VAOS.forEach(v => {
-    let n=0, d=0;
-    v.fases.forEach(f => { n += (f.p>0 ? f.r/f.p : 0)*f.w; d += f.w; });
-    global += (d>0 ? n/d : 0) * v.pesoTotal;
+    v.fases.forEach(f => { global += f.contrib; });
   });
 
   document.getElementById('kpi-infra').textContent  = pct(av_infra);
