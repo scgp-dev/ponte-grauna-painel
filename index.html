@@ -384,52 +384,14 @@
             <div class="leg-item"><div class="leg-dot" style="background:#94A3B8"></div>Não iniciado</div>
             <div class="leg-item"><div class="leg-dot" style="background:#F59E0B"></div>Em andamento</div>
             <div class="leg-item"><div class="leg-dot" style="background:#16A34A"></div>Concluído</div>
-            <div class="leg-item"><div class="leg-dot" style="background:#93C5FD;opacity:.8"></div>Trecho sobre lâmina d'água (P3–P20)</div>
-            <div class="leg-item"><div class="leg-dot" style="background:#D4B896;opacity:.8"></div>Terra</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#BFDBFE;border:1px solid #93C5FD"></div>Trecho em lâmina d'água</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#D4A855;opacity:.88"></div>Terra</div>
           </div>
         </div>
         <div class="svg-wrap">
-          <svg viewBox="0 0 1300 280" xmlns="http://www.w3.org/2000/svg" id="svg-ponte"
+          <svg viewBox="0 0 1440 145" xmlns="http://www.w3.org/2000/svg" id="svg-ponte"
                style="width:100%;min-width:900px;height:auto;display:block">
-            <!-- Terra esquerda -->
-            <rect x="0" y="195" width="185" height="55" fill="#D4B896" opacity=".4"/>
-            <path d="M0 195 Q50 192 100 194 L185 195" stroke="#A0785A" stroke-width="1" fill="none" opacity=".5"/>
-            <line x1="20"  y1="195" x2="10"  y2="210" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="50"  y1="195" x2="35"  y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="80"  y1="195" x2="65"  y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="120" y1="195" x2="105" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="155" y1="195" x2="140" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <text x="92" y="225" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="8" fill="#92400E" opacity=".7">TERRA</text>
-            <!-- Terra direita -->
-            <rect x="1063" y="195" width="237" height="55" fill="#D4B896" opacity=".4"/>
-            <path d="M1063 195 L1200 193 Q1260 192 1300 194" stroke="#A0785A" stroke-width="1" fill="none" opacity=".5"/>
-            <line x1="1090" y1="195" x2="1075" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="1130" y1="195" x2="1115" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="1170" y1="195" x2="1155" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="1210" y1="195" x2="1195" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <line x1="1250" y1="195" x2="1235" y2="215" stroke="#A0785A" stroke-width=".5" opacity=".3"/>
-            <text x="1181" y="225" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="8" fill="#92400E" opacity=".7">TERRA</text>
-            <!-- Água -->
-            <rect x="185" y="195" width="878" height="55" fill="#BFDBFE" opacity=".5"/>
-            <path d="M185 200 Q300 196 430 201 Q560 206 650 200 Q740 194 870 200 Q970 205 1063 199" stroke="#3B82F6" stroke-width="1.5" fill="none" opacity=".7"/>
-            <path d="M220 208 Q270 204 320 208 Q370 212 420 208" stroke="#60A5FA" stroke-width=".8" fill="none" opacity=".4"/>
-            <path d="M480 206 Q540 202 600 206 Q660 210 720 206" stroke="#60A5FA" stroke-width=".8" fill="none" opacity=".4"/>
-            <path d="M780 207 Q840 203 900 207 Q960 211 1020 207" stroke="#60A5FA" stroke-width=".8" fill="none" opacity=".4"/>
-            <text x="624" y="235" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="600" fill="#1D4ED8" opacity=".55" letter-spacing="1.5">REPRESA BILLINGS</text>
-            <text x="210" y="198" font-family="Barlow,sans-serif" font-size="7.5" fill="#3B82F6" opacity=".8">N.A. ▾</text>
-            <!-- Tabuleiro -->
-            <rect x="30" y="100" width="1240" height="14" rx="2" fill="#C5BDE8" opacity=".6"/>
-            <rect x="30" y="100" width="1240" height="4"  rx="2" fill="#8B7CC8" opacity=".5"/>
-            <!-- Rótulos de vão -->
-            <g font-family="Barlow Condensed,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">
-              <text x="56" y="90">29,0m</text>
-              <text x="624" y="90">← 19 vãos de 41,0m e 3 de 41,3m →</text>
-              <text x="1244" y="90">28,1m</text>
-            </g>
-            <line x1="108" y1="94" x2="1192" y2="94" stroke="#94A3B8" stroke-width=".5" stroke-dasharray="3,3" opacity=".5"/>
-            <text x="30"  y="273" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700" fill="#8B7CC8">← GRAÚNA (E1)</text>
-            <text x="1270" y="273" font-family="Barlow Condensed,sans-serif" font-size="9" font-weight="700" fill="#8B7CC8" text-anchor="end">GAIVOTAS (E2) →</text>
-            <!-- Apoios gerados por JS -->
+            <g id="mapa-bg"></g>
             <g id="apoios-container"></g>
           </svg>
         </div>
@@ -1014,91 +976,122 @@ function atualizarTabelaAtivos() {
 
 // ── MAPA SVG ──
 function gerarMapa() {
+  const bg        = document.getElementById('mapa-bg');
   const container = document.getElementById('apoios-container');
-  if (!container) return;
+  if (!container || !bg) return;
+  bg.innerHTML = '';
   container.innerHTML = '';
 
-  const n = 25; // sempre 25 apoios
-  const margem = 30;
-  const espaco = (1300 - margem * 2) / (n - 1);
+  // ── geometria (espelha ponte_preview.html) ────────────────
+  const VW=1440, VH=145, MG=44;
+  const SH=(VW-MG*2)/959.7;
+  const YDL=7, YL=17, YDT=27, YDB=34, YTB=41;
+  const YPIB=64, YBKB=73, YW=73, YEST=127;
 
-  // Mapa de pesos para calcular altura visual
-  const pesoMap = {};
-  DADOS_APOIOS.forEach(ap => { pesoMap[ap.id] = ap.pesoTotal; });
+  const METROS = {E1:0,P1:29,P2:70,P3:111,P4:152,P5:193,P6:234,P7:275,P8:316,P9:357,
+    P10:398,P11:439,P12:480,P13:521,P14:562,P15:603,P16:644,P17:685,
+    P18:726,P19:767,P20:808,P21:849.3,P22:890.3,P23:931.6,E2:959.7};
+  const ORDEM = ['E1','P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12',
+                 'P13','P14','P15','P16','P17','P18','P19','P20','P21','P22','P23','E2'];
+  const SPAN_LBL = ['29,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m',
+    '41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m','41,0m',
+    '41,0m','41,3m','41,0m','41,3m','28,1m'];
 
-  const ordemApoios = ['E1','P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12',
-                       'P13','P14','P15','P16','P17','P18','P19','P20','P21','P22','P23','E2'];
+  const AP = ORDEM.map(id => {
+    const apd = DADOS_APOIOS.find(a => a.id === id);
+    return { id, m: METROS[id], e: (id==='E1'||id==='E2') ? 'enc' : 'pil',
+             s: apd ? stApoio(apd) : 'n', apd };
+  });
+  const SPANS = AP.slice(0,-1).map((_,i)=>({i,j:i+1}));
 
-  ordemApoios.forEach((apId, i) => {
-    const ap    = DADOS_APOIOS.find(a => a.id === apId);
-    const x     = margem + i * espaco;
-    const isEnc = !ap || ap.tipo === 'Encontro';
-    const s     = ap ? stApoio(ap) : 'n';
-    const c     = cor(s);
-    const a     = ap ? avApoio(ap) : 0;
-    const peso  = pesoMap[apId] || 1.5;
-    const altMax = isEnc ? 30 : Math.min(20 + (peso - 1.5) * 20, 65);
-    const yTopo = 114;
+  function Xp(ap){ return MG + ap.m * SH; }
+  function COR(s){ return {c:'#16A34A',a:'#F59E0B',n:'#94A3B8'}[s]; }
+  function OPC(s){ return s==='n' ? 0.38 : 1; }
+  function el(tag,a){
+    const n=document.createElementNS('http://www.w3.org/2000/svg',tag);
+    for(const[k,v]of Object.entries(a))n.setAttribute(k,v); return n;
+  }
+  const Rc=(x,y,w,h,a={})=>el('rect',{x,y,width:w,height:h,...a});
+  const Ln=(x1,y1,x2,y2,a={})=>el('line',{x1,y1,x2,y2,...a});
+  const Txt=(t,x,y,a={})=>{ const n=el('text',{x,y,...a}); n.textContent=t; return n; };
 
-    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','apoio-grupo');
-    g.dataset.id = apId;
-    g.style.cursor = ap ? 'pointer' : 'default';
+  const xE1=Xp(AP[0]), xP3=Xp(AP[3]), xP20=Xp(AP[20]), xE2=Xp(AP[24]);
 
-    // Linha deck
-    const ln = document.createElementNS('http://www.w3.org/2000/svg','line');
-    ln.setAttribute('x1',x); ln.setAttribute('y1',114);
-    ln.setAttribute('x2',x); ln.setAttribute('y2',yTopo);
-    ln.setAttribute('stroke',c); ln.setAttribute('stroke-width','1'); ln.setAttribute('opacity','.35');
-    g.appendChild(ln);
+  // ── fundos ────────────────────────────────────────────────
+  bg.appendChild(el('polygon',{
+    points:`0,${YDB} ${xP3},${YW} ${xP3},${VH} 0,${VH}`,
+    fill:'#D4A855',opacity:'0.88',stroke:'#B07820','stroke-width':'0.6'}));
+  bg.appendChild(el('polygon',{
+    points:`${xP20},${YW} ${VW},${YDB} ${VW},${VH} ${xP20},${VH}`,
+    fill:'#D4A855',opacity:'0.88',stroke:'#B07820','stroke-width':'0.6'}));
+  bg.appendChild(Rc(xP3,YW,xP20-xP3,VH-YW,{fill:'#BFDBFE',opacity:'.55'}));
 
-    // Corpo
-    const w = isEnc ? 20 : 12;
-    const pilar = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    pilar.setAttribute('x', x - w/2); pilar.setAttribute('y', yTopo);
-    pilar.setAttribute('width', w); pilar.setAttribute('height', altMax + 20);
-    pilar.setAttribute('rx','2'); pilar.setAttribute('fill', c);
-    pilar.setAttribute('class','apoio-base');
-    pilar.style.transition = 'opacity .2s';
-    g.appendChild(pilar);
+  // ── labels fundo ─────────────────────────────────────────
+  bg.appendChild(Txt("Trecho em lâmina d'água",(xP3+xP20)/2,YW+12,{
+    'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':'7.5',
+    'font-weight':'600',fill:'#1E40AF',opacity:'.75','letter-spacing':'0.8'}));
+  bg.appendChild(Txt('TERRA',xP3*0.42,YW+12,{
+    'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':'7',fill:'#7C4F1E',opacity:'.8'}));
+  bg.appendChild(Txt('TERRA',(xP20+VW)*0.5,YW+12,{
+    'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':'7',fill:'#7C4F1E',opacity:'.8'}));
 
-    // Base
-    const base = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    base.setAttribute('x', x - (isEnc?14:9)); base.setAttribute('y', yTopo + altMax + 20);
-    base.setAttribute('width', isEnc?28:18); base.setAttribute('height', 8);
-    base.setAttribute('rx','2'); base.setAttribute('fill', c); base.setAttribute('opacity','.75');
-    g.appendChild(base);
+  // ── linha de cota ─────────────────────────────────────────
+  bg.appendChild(Ln(xE1,YDL,xE2,YDL,{stroke:'#475569','stroke-width':'.6',opacity:'.5'}));
+  AP.forEach(ap=>{ const x=Xp(ap);
+    bg.appendChild(Ln(x,YDL-3,x,YDL+3,{stroke:'#475569','stroke-width':'.6',opacity:'.5'})); });
 
-    // Label
-    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-    lbl.setAttribute('x',x); lbl.setAttribute('y', yTopo + altMax/2 + 14);
-    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
-    lbl.setAttribute('font-weight','700'); lbl.setAttribute('font-size', isEnc?'8':'7');
-    lbl.setAttribute('fill','#fff'); lbl.setAttribute('pointer-events','none');
-    lbl.textContent = apId;
-    g.appendChild(lbl);
+  // ── labels de vão ────────────────────────────────────────
+  SPANS.forEach((sp,idx)=>{
+    const x1=Xp(AP[sp.i]),x2=Xp(AP[sp.j]);
+    bg.appendChild(Txt(SPAN_LBL[idx],(x1+x2)/2,YDL-1.5,{
+      'text-anchor':'middle','dominant-baseline':'auto',
+      'font-family':'Arial,sans-serif','font-size':'5.5',fill:'#334155',opacity:'.75'}));
+  });
 
-    // % avanço
-    if (a > 0) {
-      const pt = document.createElementNS('http://www.w3.org/2000/svg','text');
-      pt.setAttribute('x',x); pt.setAttribute('y', yTopo + altMax/2 + 24);
-      pt.setAttribute('text-anchor','middle'); pt.setAttribute('font-family','Barlow,sans-serif');
-      pt.setAttribute('font-size','6'); pt.setAttribute('fill','rgba(255,255,255,.85)');
-      pt.setAttribute('pointer-events','none');
-      pt.textContent = (a*100).toFixed(0)+'%';
-      g.appendChild(pt);
+  // ── tabuleiro ────────────────────────────────────────────
+  SPANS.forEach(sp=>{
+    const x1=Xp(AP[sp.i]),x2=Xp(AP[sp.j]);
+    bg.appendChild(Rc(x1,YDT,x2-x1,3,{fill:'#475569',opacity:'.18',stroke:'none'}));
+    bg.appendChild(Rc(x1,YDB-3,x2-x1,3,{fill:'#475569',opacity:'.18',stroke:'none'}));
+  });
+  bg.appendChild(Ln(xE1,YDT,xE2,YDT,{stroke:'#1e293b','stroke-width':'2.5',opacity:'.88'}));
+  bg.appendChild(Ln(xE1,YDB,xE2,YDB,{stroke:'#1e293b','stroke-width':'2.5',opacity:'.88'}));
+
+  // ── apoios + rótulos ──────────────────────────────────────
+  AP.forEach(ap=>{
+    const x=Xp(ap), c=COR(ap.s), op=OPC(ap.s), isE=ap.e==='enc';
+    const g=el('g',{class:'apoio-grupo'});
+    g.style.cursor = ap.apd ? 'pointer' : 'default';
+
+    if(isE){
+      g.appendChild(Rc(x-10,YDB,20,YTB-YDB,{fill:c,opacity:op,rx:'1'}));
+      for(const off of [-4.5,+1.5])
+        g.appendChild(Rc(x+off,YTB,3.5,YEST-YTB,{fill:c,opacity:op,rx:'1'}));
+    } else {
+      g.appendChild(Rc(x-10,YDB,20,YTB-YDB,{fill:c,opacity:op,rx:'1'}));
+      for(const off of [-4.5,+1.5])
+        g.appendChild(Rc(x+off,YTB,3.5,YPIB-YTB,{fill:c,opacity:op}));
+      g.appendChild(Rc(x-11,YPIB,22,YBKB-YPIB,{fill:c,opacity:op,rx:'1.5'}));
+      for(const off of [-4.5,+1.5])
+        g.appendChild(Rc(x+off,YBKB,3.5,YEST-YBKB,{fill:c,opacity:op,rx:'1'}));
     }
 
-    if (ap) {
-      g.addEventListener('mouseenter', e => { pilar.style.opacity='.78'; showTT(e,ap); });
-      g.addEventListener('mousemove',  e => moveTT(e));
-      g.addEventListener('mouseleave', () => { pilar.style.opacity='1'; hideTT(); });
-      g.addEventListener('click', () => {
+    // rótulo
+    g.appendChild(Ln(x,YL+8,x,YDT,{stroke:'#94A3B8','stroke-width':'.7','stroke-dasharray':'2,1.5',opacity:'.55'}));
+    g.appendChild(el('circle',{cx:x,cy:YL,r:isE?9.5:8.5,fill:'#fff',stroke:'#28156E','stroke-width':'1.2'}));
+    const lbl=el('text',{x,y:YL,'text-anchor':'middle','dominant-baseline':'middle',
+      'font-family':'Arial,sans-serif','font-size':ap.id.length>2?'5.5':'6.5','font-weight':'700',fill:'#28156E'});
+    lbl.textContent=ap.id; g.appendChild(lbl);
+
+    if(ap.apd){
+      g.addEventListener('mouseenter', e=>{ g.style.opacity='.75'; showTT(e,ap.apd); });
+      g.addEventListener('mousemove',  e=>moveTT(e));
+      g.addEventListener('mouseleave', ()=>{ g.style.opacity='1'; hideTT(); });
+      g.addEventListener('click', ()=>{
         pg('detalhe', document.querySelectorAll('nav button')[1]);
         selApoio(ap.id);
       });
     }
-
     container.appendChild(g);
   });
 }
