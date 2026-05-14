@@ -347,34 +347,6 @@
         </div>
       </div>
 
-      <!-- KPI PRAZO CONTRATUAL -->
-      <div class="card" style="margin-bottom:18px;padding:14px 22px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-          <div class="kpi-lbl" style="margin:0">Prazo Contratual</div>
-          <div style="font-size:9px;color:var(--cinza)">OS Recibo Nº 08323347.020725.084152</div>
-        </div>
-        <div style="display:grid;grid-template-columns:90px 1fr 90px;align-items:center;gap:14px">
-          <div style="text-align:center">
-            <div style="font-size:9px;color:var(--cinza);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px">Início</div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--g-pri)">07/07/2025</div>
-          </div>
-          <div>
-            <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:5px">
-              <span style="color:var(--cinza)" id="prazo-dias-dec">—</span>
-              <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--g-pri)" id="prazo-pct">—</span>
-              <span style="color:var(--cinza)" id="prazo-dias-rest">—</span>
-            </div>
-            <div style="height:10px;background:var(--g-clr);border-radius:5px;overflow:hidden">
-              <div id="prazo-bar" style="height:100%;background:var(--g-pri);border-radius:5px;width:0%;transition:width .6s"></div>
-            </div>
-            <div style="text-align:center;font-size:9px;color:var(--cinza);margin-top:4px" id="prazo-total">— dias de prazo total</div>
-          </div>
-          <div style="text-align:center">
-            <div style="font-size:9px;color:var(--cinza);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px">Término</div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--g-pri)">18/05/2028</div>
-          </div>
-        </div>
-      </div>
 
       <!-- MAPA -->
       <div class="mapa-card">
@@ -552,8 +524,7 @@ function sair() {
 
 // Verificar sessão existente ao carregar
 window.addEventListener('DOMContentLoaded', () => {
-  atualizarPrazo(); // independe de login/CSV
-  const nome   = sessionStorage.getItem('user_nome');
+const nome   = sessionStorage.getItem('user_nome');
   const avatar = sessionStorage.getItem('user_avatar');
   if (nome) {
     entrar(nome, avatar);
@@ -808,7 +779,6 @@ function renderizarTudo() {
   if (!DADOS_APOIOS.length && !DADOS_VAOS.length) return;
 
   atualizarKPIs();
-  atualizarPrazo();
   gerarMapa();
   atualizarContadores();
   atualizarBarras();
@@ -880,24 +850,6 @@ function atualizarContadores() {
   document.getElementById('cnt-laje').textContent = laje;
 }
 
-// ── PRAZO CONTRATUAL ──
-function atualizarPrazo() {
-  const inicio  = new Date(2025, 6, 7);  // 07/07/2025
-  const termino = new Date(2028, 4, 18); // 18/05/2028
-  const hoje    = new Date(); hoje.setHours(0,0,0,0);
-
-  const MS = 86400000;
-  const totalDias     = Math.round((termino - inicio) / MS);
-  const decorridoDias = Math.min(Math.round((hoje - inicio) / MS), totalDias);
-  const restanteDias  = Math.max(totalDias - decorridoDias, 0);
-  const pctPrazo      = (decorridoDias / totalDias * 100).toFixed(1);
-
-  document.getElementById('prazo-dias-dec').textContent  = decorridoDias + ' dias decorridos';
-  document.getElementById('prazo-dias-rest').textContent = restanteDias  + ' dias restantes';
-  document.getElementById('prazo-pct').textContent       = pctPrazo + '% do prazo';
-  document.getElementById('prazo-total').textContent     = totalDias + ' dias de prazo total';
-  document.getElementById('prazo-bar').style.width       = pctPrazo + '%';
-}
 
 // ── BARRAS ──
 function atualizarBarras() {
