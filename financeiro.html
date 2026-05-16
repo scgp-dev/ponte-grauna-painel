@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Painel Financeiro — Ponte Graúna-Gaivotas</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
@@ -16,17 +16,17 @@
   --sombra:0 1px 3px rgba(15,13,26,.07);--sombra-md:0 4px 16px rgba(40,21,110,.1);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--fundo);color:#0F0D1A;min-height:100vh;}
+body{font-family:'Barlow',sans-serif;background:var(--fundo);color:#0F0D1A;min-height:100vh;}
 
 /* HEADER */
-header{background:var(--g-esc);height:62px;display:flex;align-items:center;
+header{background:var(--g-esc);height:60px;display:flex;align-items:center;
   justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:200;
-  box-shadow:0 2px 16px rgba(0,0,0,.4);}
-.logo-box{background:var(--branco);border-radius:7px;padding:5px 12px;display:flex;align-items:center;}
+  box-shadow:0 2px 12px rgba(0,0,0,.35);}
+.logo-box{background:var(--branco);border-radius:6px;padding:5px 12px;display:flex;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.2);}
 .h-titulo{margin-left:14px;}
-.h-titulo h1{font-size:16px;font-weight:700;color:var(--branco);letter-spacing:.2px;}
-.h-titulo p{font-size:10px;color:rgba(255,255,255,.4);margin-top:1px;}
-.h-right{display:flex;align-items:center;gap:12px;}
+.h-titulo h1{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--branco);letter-spacing:.5px;}
+.h-titulo p{font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;}
+.h-right{display:flex;align-items:center;gap:16px;}
 .badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
   border-radius:6px;padding:5px 12px;text-align:center;}
 .badge span{display:block;font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;}
@@ -42,7 +42,7 @@ header{background:var(--g-esc);height:62px;display:flex;align-items:center;
 
 /* NAV */
 nav{background:var(--g-pri);padding:0 28px;display:flex;border-bottom:1px solid rgba(255,255,255,.08);}
-nav button{background:none;border:none;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;
+nav button{background:none;border:none;color:rgba(255,255,255,.5);font-family:'Barlow',sans-serif;
   font-size:12px;font-weight:500;padding:11px 18px;cursor:pointer;
   border-bottom:3px solid transparent;transition:all .2s;}
 nav button:hover{color:rgba(255,255,255,.8);}
@@ -52,7 +52,7 @@ nav button.ativo{color:var(--branco);border-bottom-color:#FCD34D;font-weight:600
 .filtros-bar{background:var(--branco);border-bottom:1px solid var(--borda);
   padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .f-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--cinza);}
-.f-sel{font-family:'DM Sans',sans-serif;font-size:12px;border:1px solid var(--borda);
+.f-sel{font-family:'Barlow',sans-serif;font-size:12px;border:1px solid var(--borda);
   border-radius:6px;padding:5px 10px;background:var(--fundo);cursor:pointer;min-width:150px;}
 .f-sel:focus{outline:none;border-color:var(--g-pri);}
 .tag-oae{display:inline-flex;align-items:center;gap:5px;background:var(--oae-clr);
@@ -63,7 +63,7 @@ nav button.ativo{color:var(--branco);border-bottom-color:#FCD34D;font-weight:600
 
 /* PESQUISA */
 .search-box{position:relative;}
-.search-input{font-family:'DM Sans',sans-serif;font-size:12px;border:1px solid var(--borda);
+.search-input{font-family:'Barlow',sans-serif;font-size:12px;border:1px solid var(--borda);
   border-radius:6px;padding:5px 10px 5px 30px;background:var(--fundo);width:220px;}
 .search-input:focus{outline:none;border-color:var(--g-pri);}
 .search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);
@@ -80,9 +80,9 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 .kpi.dark{background:var(--g-esc);border-left-color:rgba(255,255,255,.2);}
 .kpi-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--cinza);margin-bottom:5px;}
 .kpi.dark .kpi-lbl{color:rgba(255,255,255,.45);}
-.kpi-val{font-family:'DM Mono',monospace;font-size:17px;font-weight:500;line-height:1.2;color:var(--g-pri);}
+.kpi-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;line-height:1.1;color:var(--g-pri);}
 .kpi.oae .kpi-val{color:var(--oae);}.kpi.verde .kpi-val{color:var(--verde);}
-.kpi.dark .kpi-val{color:var(--branco);font-size:20px;}
+.kpi.dark .kpi-val{color:var(--branco);font-size:26px;}
 .kpi-sub{font-size:10px;color:var(--cinza);margin-top:3px;}
 .kpi.dark .kpi-sub{color:rgba(255,255,255,.4);}
 .kpi-prog{margin-top:8px;height:4px;background:rgba(0,0,0,.06);border-radius:2px;overflow:hidden;}
@@ -90,7 +90,7 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 
 /* CARDS */
 .card{background:var(--branco);border-radius:10px;box-shadow:var(--sombra);padding:20px 24px;}
-.card-titulo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+.card-titulo{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
   color:var(--g-pri);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .card-titulo::after{content:'';flex:1;height:1px;background:var(--g-brd);}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
@@ -107,7 +107,7 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 .bar-nome.oae{color:var(--oae);font-weight:700;}
 .bar-wrap{flex:1;height:9px;background:var(--g-clr);border-radius:5px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:5px;transition:width .7s ease;}
-.bar-val{font-family:'DM Mono',monospace;font-size:10px;color:var(--cinza);width:130px;text-align:right;flex-shrink:0;}
+.bar-val{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--cinza);width:130px;text-align:right;flex-shrink:0;}
 
 /* TABELA EAP */
 .tabela-wrap{overflow:auto;border-radius:8px;border:1px solid var(--borda);}
@@ -117,8 +117,8 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
   white-space:nowrap;position:sticky;top:0;z-index:2;}
 .tabela th.r{text-align:right;}
 .tabela td{padding:7px 10px;border-bottom:1px solid var(--borda);vertical-align:middle;}
-.tabela td.r{text-align:right;font-family:'DM Mono',monospace;font-size:10px;}
-.tabela td.mono{font-family:'DM Mono',monospace;font-size:10px;}
+.tabela td.r{text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:10px;}
+.tabela td.mono{font-family:'Barlow Condensed',sans-serif;font-size:10px;}
 
 /* Estilos por nível EAP */
 .row-g1 td{background:#1A0D4A!important;color:var(--branco)!important;font-weight:700;font-size:12px;}
@@ -163,7 +163,7 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 .hc-n{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--cinza);margin-bottom:2px;}
 .hist-card.ativo .hc-n,.hist-card.ativo .hc-d,.hist-card.ativo .hc-p{color:rgba(255,255,255,.5);}
 .hc-d{font-size:10px;color:var(--cinza);margin-bottom:4px;}
-.hc-v{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--g-pri);}
+.hc-v{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:500;color:var(--g-pri);}
 .hist-card.ativo .hc-v{color:var(--branco);}
 .hc-v.zero{color:var(--cinza);}.hc-p{font-size:9px;color:var(--cinza);margin-top:2px;}
 
@@ -186,7 +186,7 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 .user-info-bar{display:flex;align-items:center;gap:8px;}
 .user-avatar-img{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.3);display:none;}
 .user-nome-txt{font-size:11px;color:rgba(255,255,255,.7);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.btn-sair{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:5px;color:rgba(255,255,255,.7);font-size:10px;padding:4px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;}
+.btn-sair{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:5px;color:rgba(255,255,255,.7);font-size:10px;padding:4px 10px;cursor:pointer;font-family:'Barlow',sans-serif;transition:background .15s;}
 .btn-sair:hover{background:rgba(255,255,255,.18);}
 .btn-home{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);text-decoration:none;transition:background .15s,color .15s;flex-shrink:0;}
 .btn-home:hover{background:rgba(255,255,255,.18);color:var(--branco);}
@@ -197,7 +197,7 @@ main{padding:20px 28px;max-width:1800px;margin:0 auto;}
 <div id="tela-login">
   <div class="login-card">
     <div class="login-logo">
-      <span style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;color:var(--g-pri);letter-spacing:.5px">A.GASPAR &middot; SIURB/PMSP</span>
+      <span style="font-family:'Barlow',sans-serif;font-size:13px;font-weight:700;color:var(--g-pri);letter-spacing:.5px">A.GASPAR &middot; SIURB/PMSP</span>
     </div>
     <div class="login-titulo">Ponte Graúna-Gaivotas</div>
     <div class="login-sub">Painel Financeiro — Medição<br>Contrato 029/SIURB/2025 — Acesso restrito</div>
@@ -620,11 +620,11 @@ function renderCurva() {
     ]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{font:{family:'DM Sans',size:11},usePointStyle:true}},
+      plugins:{legend:{labels:{font:{family:'Barlow',size:11},usePointStyle:true}},
         tooltip:{callbacks:{label:c=>`${c.dataset.label}: R$ ${c.parsed.y} Mi`}}},
       scales:{
-        x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'DM Sans',size:10}}},
-        y:{ticks:{font:{family:'DM Mono',size:10},callback:v=>'R$ '+v+' Mi'},grid:{color:'rgba(0,0,0,.05)'}}
+        x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Barlow',size:10}}},
+        y:{ticks:{font:{family:'Barlow Condensed',size:10},callback:v=>'R$ '+v+' Mi'},grid:{color:'rgba(0,0,0,.05)'}}
       }
     }
   });
@@ -647,7 +647,7 @@ function renderPizza() {
     data:{labels,datasets:[{data:vals,backgroundColor:cores,borderWidth:2,borderColor:'#fff'}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{position:'right',labels:{font:{family:'DM Sans',size:9},boxWidth:10}},
+        legend:{position:'right',labels:{font:{family:'Barlow',size:9},boxWidth:10}},
         tooltip:{callbacks:{label:c=>`${c.label}: ${Rm(c.raw)}`}}
       }
     }
@@ -759,12 +759,12 @@ function renderHistorico() {
     ]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{font:{family:'DM Sans',size:11},usePointStyle:true}},
+      plugins:{legend:{labels:{font:{family:'Barlow',size:11},usePointStyle:true}},
         tooltip:{callbacks:{label:c=>`${c.dataset.label}: R$ ${c.parsed.y} Mi`}}},
       scales:{
-        x:{grid:{display:false},ticks:{font:{family:'DM Sans',size:10}}},
-        y:{position:'left',ticks:{font:{family:'DM Mono',size:10},callback:v=>v+' Mi'},grid:{color:'rgba(0,0,0,.05)'}},
-        y2:{position:'right',ticks:{font:{family:'DM Mono',size:10},callback:v=>v+' Mi'},grid:{display:false}}
+        x:{grid:{display:false},ticks:{font:{family:'Barlow',size:10}}},
+        y:{position:'left',ticks:{font:{family:'Barlow Condensed',size:10},callback:v=>v+' Mi'},grid:{color:'rgba(0,0,0,.05)'}},
+        y2:{position:'right',ticks:{font:{family:'Barlow Condensed',size:10},callback:v=>v+' Mi'},grid:{display:false}}
       }
     }
   });
